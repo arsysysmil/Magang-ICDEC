@@ -2,7 +2,7 @@
 
 Menyalakan dan memadamkan LED di board.
 
-Tujuannya bukan LED-nya, melainkan membuktikan rantai kerja berfungsi:
+ membuktikan rantai kerja berfungsi:
 
 ```
 CubeMX  ─▶  CubeIDE  ─▶  compiler ARM  ─▶  ST-LINK  ─▶  chip menjalankan kode
