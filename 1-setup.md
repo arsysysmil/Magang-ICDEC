@@ -19,32 +19,16 @@ Semua gratis. Perlu akun ST (bisa daftar saat mengunduh, atau pakai *Download as
 
 ---
 
-## ⚠️ Baca dulu — CubeIDE 2.x tidak memuat CubeMX
+##  CubeIDE 2.x tidak memuat CubeMX
 
-Sejak **CubeIDE 2.0.0**, CubeMX dipisah jadi program berdiri sendiri.
+**CubeIDE 2.0.0**, CubeMX dipisah jadi program berdiri sendiri.
 
-Akibatnya menu `File > New > STM32 Project` yang muncul di tutorial YouTube lama
-**tidak ada** di CubeIDE 2.x. Tutorial lama dibuat untuk CubeIDE 1.x.
 
 | | CubeIDE 1.x | CubeIDE 2.x |
 |---|---|---|
 | CubeMX | menyatu | terpisah |
 | Buat proyek | dari dalam CubeIDE | dari CubeMX |
 
-**Konsekuensi:** proyek selalu dibuat di CubeMX, bukan di CubeIDE.
-
-Kalau memakai wizard *STM32CubeIDE Empty Project*, hasilnya proyek kosong tanpa
-`.ioc`, tanpa `Drivers/`, tanpa HAL — `HAL_Delay()` tidak akan dikenal.
-
-**Ciri proyek benar vs salah:**
-
-| | Benar | Salah |
-|---|---|---|
-| Folder | `Core/` `Drivers/` `*.ioc` | `Inc/` `Src/` `Startup/` |
-| Waktu pembuatan | ada unduhan firmware 10–25 menit (pertama kali) | selesai seketika |
-
-Kalau pembuatan proyek selesai dalam hitungan detik tanpa unduhan apa pun,
-proyeknya salah. Hapus, ulangi.
 
 ---
 
@@ -82,8 +66,6 @@ Unduh: <https://www.st.com/en/development-tools/stm32cubemx.html> → bagian **G
 | **STM32CubeMX** | semua MCU **kecuali** seri STM32C5 | ✅ |
 | STM32CubeMX2 | seri STM32C5 saja | ❌ |
 
-Nama "MX2" terdengar lebih baru, padahal itu alat untuk seri chip lain.
-Salah unduh → board tidak muncul di daftar.
 
 ### Windows
 
@@ -102,8 +84,6 @@ cd cubemx_install
 chmod +x SetupSTM32CubeMX-*
 ./SetupSTM32CubeMX-*
 ```
-
-Jangan pakai `sudo` — pasang di folder rumah sudah cukup.
 
 ---
 
@@ -126,9 +106,7 @@ ls /etc/udev/rules.d/ | grep stlink
 sudo usermod -aG dialout $USER
 ```
 
-Lalu **logout dan login lagi**. Menutup terminal saja tidak cukup — daftar grup
-hanya dibaca saat sesi desktop dimulai.
-
+Lalu **logout dan login lagi**. 
 Kalau udev rules belum ada, salin dari folder CubeIDE:
 
 ```bash
@@ -153,9 +131,6 @@ lsusb | grep -i stmicro
 ls /dev/ttyACM*
 ```
 
-> **Penyebab paling sering board tidak terdeteksi: kabel charging-only.**
-> Banyak kabel USB hanya mengalirkan daya. Ganti kabel data.
-
 ---
 
 ## Langkah 5 — Buat proyek pertama
@@ -166,8 +141,8 @@ ls /dev/ttyACM*
 3. Ketik nama board di kotak pencarian, contoh `U5A9` atau `F401`
 4. Klik barisnya → **Start Project**
 5. Dialog *"Initialize all peripherals with their default Mode?"* → **Yes**
-   → ini yang otomatis mengatur pin LED beserta namanya
-6. Kalau ditanya **TrustZone** → **Disabled / Without TrustZone**
+   → ini otomatis mengatur pin LED beserta namanya
+6. jika ada*TrustZone** → **Disabled / Without TrustZone**
 
 ---
 
@@ -181,7 +156,7 @@ Tab **Project Manager** → sub-tab **Project**:
 | Project Location | folder workspace CubeIDE |
 | **Toolchain / IDE** | **`STM32CubeIDE`** |
 
-⚠️ Toolchain wajib `STM32CubeIDE`. Salah pilih → tidak bisa dibuka di CubeIDE.
+⚠️ Toolchain wajib `STM32CubeIDE`.
 
 Sub-tab **Code Generator** → centang
 **"Generate peripheral initialization as a pair of '.c/.h' files per peripheral"**.
@@ -240,9 +215,6 @@ Kode buatan sendiri **harus** ditulis di antara penanda:
    ← tulis di sini
 /* USER CODE END ... */
 ```
-
-Apa pun di luar penanda akan **dihapus otomatis** setiap kali GENERATE CODE
-ditekan lagi. Ini penyebab nomor satu kehilangan pekerjaan di STM32.
 
 ---
 
