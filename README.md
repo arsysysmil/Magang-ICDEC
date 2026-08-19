@@ -48,6 +48,3 @@ jalur komunikasi berfungsi. Keduanya prasyarat sebelum program yang lebih besar.
 
 ---
 
-## Lisensi
-
-MIT.
