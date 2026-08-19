@@ -2,11 +2,9 @@
 
 Mengirim teks dari chip ke komputer lewat UART, ditampilkan di terminal serial.
 
-Prasyarat: [2 — Blink](2-blink.md) selesai.
-
 ---
 
-## Cara kerjanya
+## Cara kerja
 
 ```
 printf("Hello")
@@ -21,8 +19,7 @@ HAL_UART_Transmit()
 USART1  ─▶  pin TX  ─▶  chip ST-LINK  ─▶  USB  ─▶  komputer
 ```
 
-`printf` adalah fungsi standar C. Ia tidak tahu apa-apa tentang UART — ia hanya
-memanggil `__io_putchar()` untuk setiap huruf. Di komputer biasa fungsi itu
+`printf` adalah fungsi standar C.memanggil `__io_putchar()` untuk setiap huruf. Di komputer biasa fungsi itu
 disediakan sistem operasi. Di mikrokontroler tidak ada sistem operasi, jadi
 fungsi itu kosong dan teksnya hilang.
 
